@@ -55,5 +55,8 @@ alias kl='kubectl logs'                         # Display logs
 alias kaf='kubectl apply -f'                    # Apply configuration from file
 alias krm='kubectl delete'                      # Delete resource
 
+# SSH identities
+zstyle :omz:plugins:ssh-agent identities personal.key synply-gitlab.key
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

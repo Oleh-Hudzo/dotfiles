@@ -1,6 +1,3 @@
-# SSH agent
-eval "$(ssh-agent -s)"
-
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
@@ -10,7 +7,10 @@ export ZSH="/Users/oleh/.oh-my-zsh"
 source ~/powerlevel10k/powerlevel10k.zsh-theme
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
-plugins=(git)
+plugins=(
+  git
+  ssh-agent
+)
 
 source $ZSH/oh-my-zsh.sh
 

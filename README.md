@@ -10,16 +10,11 @@ This repository contains my personal configurations for various tools and shells
 git clone https://github.com/Oleh-Hudzo/dotfiles.git
 ```
 
-2. Create symlinks to the configuration files:
-
-- For Neovim:
+2. Run the setup script:
 
 ```bash
-ln -s ~/dotfiles/nvim/init.vim ~/.config/nvim/init.vim
+cd dotfiles
+./setup.sh
 ```
 
-- For ZSH:
-
-```bash
-ln -s ~/dotfiles/.zshrc ~/.zshrc
-```
+The script will create symlinks to the configuration files in your home directory. If a configuration file already exists, it will be backed up.

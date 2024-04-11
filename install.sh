@@ -2,7 +2,7 @@
 
 # Stop on error
 set -e
-EPO_ROOT="$(git rev-parse --show-toplevel)"
+REPO_ROOT="$(git rev-parse --show-toplevel)"
 echo "REPO_ROOT is set to: $REPO_ROOT"
 
 # Install dependencies on MacOS
@@ -59,9 +59,6 @@ echo "Creating symlinks..."
 create_symlink() {
   local target="$1"
   local link_name="$2"
-
-  echo "Debug: Target -> $target"
-  echo "Debug: Link Name -> $link_name"
 
   # Check if the target link name exists or is a symlink
   if [ -e "$link_name" ] || [ -L "$link_name" ]; then

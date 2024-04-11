@@ -13,6 +13,8 @@ install_macos() {
     echo "Homebrew not found. Installing..."
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   fi
+  echo "Installing oh-my-zsh..."
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
   echo "Installing powerlevek10k..."
   brew install powerlevel10k
   echo "Installing Neovim..."
@@ -22,6 +24,13 @@ install_macos() {
 # Install dependencies Linux
 install_linux() {
   echo "Detected Linux"
+  # Check if oh-my-zsh is installed
+  if [ ! -d "$HOME/.oh-my-zsh" ]; then
+    echo "Installing oh-my-zsh..."
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  else
+    echo "oh-my-zsh already installed. Skipping..."
+  fi
   # Check if powerlevel10k is already installed
   if [ ! -d "$HOME/powerlevel10k" ]; then
     echo "Installing powerlevel10k..."

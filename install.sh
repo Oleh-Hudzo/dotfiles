@@ -22,8 +22,13 @@ install_macos() {
 # Install dependencies Linux
 install_linux() {
   echo "Detected Linux"
-  echo "Installing powerlevek10k..."
-  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
+  # Check if powerlevel10k is already installed
+  if [ ! -d "$HOME/powerlevel10k" ]; then
+    echo "Installing powerlevel10k..."
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
+  else
+    echo "Powerlevel10k already installed. Skipping..."
+  fi
   if command -v apt &> /dev/null; then
     echo "Using apt package manager to install dependencies..."
     sudo apt update && sudo apt install -y neovim
@@ -82,4 +87,3 @@ rm -f "$HOME/.config/nvim/nvim"
 
 echo "Done!"
 echo "Please restart your shell to apply changes"
-

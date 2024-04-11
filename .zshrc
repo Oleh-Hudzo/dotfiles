@@ -1,11 +1,7 @@
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 export ZSH="$HOME/.oh-my-zsh"
+export PATH=$PATH:/usr/local/go/bin
 
-source $HOME/powerlevel10k/powerlevel10k.zsh-theme
-ZSH_THEME="powerlevel10k/powerlevel10k"
+eval "$(starship init zsh)"
 
 plugins=(
   git
@@ -21,9 +17,9 @@ else
   export EDITOR='nvim'
 fi
 
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+# Aliases
+alias python=python3
+
 alias ll='ls -lF'
 alias la='ls -la'
 alias c='clear'

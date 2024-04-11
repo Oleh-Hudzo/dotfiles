@@ -13,6 +13,8 @@ install_macos() {
     echo "Homebrew not found. Installing..."
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   fi
+  echo "Installing powerlevek10k..."
+  brew install powerlevel10k
   echo "Installing Neovim..."
   brew install neovim
 }
@@ -20,6 +22,8 @@ install_macos() {
 # Install dependencies Linux
 install_linux() {
   echo "Detected Linux"
+  echo "Installing powerlevek10k..."
+  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
   if command -v apt &> /dev/null; then
     echo "Using apt package manager to install dependencies..."
     sudo apt update && sudo apt install -y neovim

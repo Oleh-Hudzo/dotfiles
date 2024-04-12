@@ -6,8 +6,11 @@ eval "$(starship init zsh)"
 plugins=(
   git
   ssh-agent
+  zsh-autosuggestions
+  zsh-syntax-highlighting
 )
 
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=4'
 source $ZSH/oh-my-zsh.sh
 
 # Preferred editor for local and remote sessions

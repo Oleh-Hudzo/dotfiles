@@ -10,7 +10,10 @@ plugins=(
   zsh-syntax-highlighting
 )
 
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=4'
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=7'
+ZSH_HIGHLIGHT_STYLES[suffix-alias]=fg=blue,bold
+ZSH_HIGHLIGHT_STYLES[unknown-token]=fg=grey,bold
+ZSH_HIGHLIGHT_STYLES[arg0]=fg=blue
 source $ZSH/oh-my-zsh.sh
 
 # Preferred editor for local and remote sessions

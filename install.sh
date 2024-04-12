@@ -13,11 +13,21 @@ install_macos() {
     echo "Homebrew not found. Installing..."
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   fi
-  echo "Installing oh-my-zsh..."
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-  echo "Installing starship..."
-  brew install starship
-  echo "Installing Neovim..."
+  # Ensure oh-my-zsh is installed
+  if [ ! -d "$HOME/.oh-my-zsh" ]; then
+    echo "oh-my-zsh not found. Installing..."
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  fi
+  # Ensure starship is installed
+  if ! command -v starship &> /dev/null; then
+    echo "starship not found. Installing..."
+    brew install starship
+  fi
+  # Ensure neovim is installed
+  if ! command -v nvim &> /dev/null; then
+    echo "neovim not found. Installing..."
+    brew install neovim
+  fi
   brew install neovim
 }
 
@@ -140,6 +150,7 @@ create_symlink() {
 create_symlink "$REPO_ROOT/.zshrc" "$HOME/.zshrc"
 create_symlink "$REPO_ROOT/nvim" "$HOME/.config/nvim"
 create_symlink "$REPO_ROOT/starship.toml" "$HOME/.config/starship.toml"
+create_symlink "$REPO_ROOT/wezterm" "$HOME/.config/wezterm"
 rm -f "$HOME/.config/nvim/nvim"
 
 echo "Done!"

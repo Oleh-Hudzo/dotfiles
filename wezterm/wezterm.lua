@@ -9,7 +9,7 @@ end
 
 -- Settings
 config.color_scheme = "Tokyo Night"
-config.font_size = 12.5
+config.font_size = 15
 config.font = wezterm.font("JetBrains Mono")
 config.window_background_opacity = 0.85
 config.window_decorations = "RESIZE"

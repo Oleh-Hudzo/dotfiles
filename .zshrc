@@ -57,6 +57,8 @@ alias kl='kubectl logs'                         # Display logs
 alias kaf='kubectl apply -f'                    # Apply configuration from file
 alias krm='kubectl delete'                      # Delete resource
 
+alias lz='lazygit'
+
 # SSH identities
 zstyle :omz:plugins:ssh-agent identities personal.key synply-gitlab.key
 

@@ -10,11 +10,12 @@ plugins=(
   zsh-syntax-highlighting
 )
 
+source $ZSH/oh-my-zsh.sh
+
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=7'
-ZSH_HIGHLIGHT_STYLES[suffix-alias]=fg=blue,bold
+ZSH_HIGHLIGHT_STYLES[suffix-alias]=fg=blue,underline
 ZSH_HIGHLIGHT_STYLES[unknown-token]=fg=grey,bold
 ZSH_HIGHLIGHT_STYLES[arg0]=fg=blue
-source $ZSH/oh-my-zsh.sh
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
@@ -62,5 +63,3 @@ alias lz='lazygit'
 # SSH identities
 zstyle :omz:plugins:ssh-agent identities personal.key synply-gitlab.key
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

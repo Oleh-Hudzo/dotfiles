@@ -126,6 +126,8 @@ create_symlink "$REPO_ROOT/.zshrc" "$HOME/.zshrc"
 create_symlink "$REPO_ROOT/nvim" "$HOME/.config/nvim"
 create_symlink "$REPO_ROOT/starship.toml" "$HOME/.config/starship.toml"
 create_symlink "$REPO_ROOT/wezterm" "$HOME/.config/wezterm"
+# Copy to clipboard functionality on Windows WSL2
+create_symlink "$REPO_ROOT/xsel" "$HOME/bin/xsel"
 rm -f "$HOME/.config/nvim/nvim"
 
 echo "Done!"

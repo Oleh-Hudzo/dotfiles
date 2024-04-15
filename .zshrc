@@ -1,5 +1,7 @@
 export ZSH="$HOME/.oh-my-zsh"
 export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:$HOME/bin
+export DISPLAY=:0
 
 eval "$(starship init zsh)"
 

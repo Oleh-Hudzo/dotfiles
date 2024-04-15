@@ -14,7 +14,7 @@ git clone https://github.com/Oleh-Hudzo/dotfiles.git
 
 ```bash
 cd dotfiles
-./setup.sh
+./install.sh
 ```
 
 The script will create symlinks to the configuration files in your home directory. If a configuration file already exists, it will be backed up.

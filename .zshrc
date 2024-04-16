@@ -1,9 +1,13 @@
 export ZSH="$HOME/.oh-my-zsh"
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:$HOME/bin
+export PATH=$PATH:$HOME/.local/bin
 export DISPLAY=:0
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
 
 eval "$(starship init zsh)"
+eval "$(zoxide init zsh)"
 
 plugins=(
   git
@@ -65,3 +69,5 @@ alias lz='lazygit'
 # SSH identities
 zstyle :omz:plugins:ssh-agent identities personal.key synply-gitlab.key
 
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

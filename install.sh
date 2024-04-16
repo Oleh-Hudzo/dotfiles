@@ -14,7 +14,7 @@ install_macos() {
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   fi
   # Ensure required packages are installed using Homebrew
-  brew_packages=("starship" "neovim")
+  brew_packages=("starship" "neovim" "tmux" "joshmedeski/sesh/sesh" "zoxide" "fzf")
   for pkg in "${brew_packages[@]}"; do
     if ! command -v "$pkg" &> /dev/null; then
       echo "$pkg not found. Installing..."
@@ -28,10 +28,10 @@ install_linux() {
   echo "Detected Linux"
   # Define package manager commands
   package_managers=(
-    "sudo apt-get install -y curl git zsh npm unzip"  # Debian/Ubuntu/Kali
-    "sudo dnf install -y curl git zsh npm unzip"      # Fedora/RedHat/CentOS
-    "sudo pacman -S --noconfirm curl git zsh npm unzip"  # Arch/Manjaro
-    "sudo zypper install -y curl git zsh npm unzip"   # openSUSE
+    "sudo apt-get install -y curl git zsh npm unzip tmux "  # Debian/Ubuntu/Kali
+    "sudo dnf install -y curl git zsh npm unzip tmux"      # Fedora/RedHat/CentOS
+    "sudo pacman -S --noconfirm curl git zsh npm unzip tmux"  # Arch/Manjaro
+    "sudo zypper install -y curl git zsh npm unzip tmux"   # openSUSE
   )
   # Loop through package managers and execute the first available one
   for pkg_manager_cmd in "${package_managers[@]}"; do
@@ -60,6 +60,25 @@ install_linux() {
     chmod u+x nvim.appimage
     sudo mv nvim.appimage /usr/local/bin/nvim
   fi
+
+  # Install sesh
+  if ! command -v sesh &> /dev/null; then
+    echo "Installing sesh..."
+    go install github.com/joshmedeski/sesh@latest
+  fi
+
+  # Install zoxide
+  if ! command -v zoxide &> /dev/null; then
+    echo "Installing zoxide..."
+    curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
+  fi
+
+  # Install fzf
+  if ! command -v fzf &> /dev/null; then
+    echo "Installing fzf..."
+    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+    ~/.fzf/install
+  fi
 }
 
 # Function to install oh-my-zsh
@@ -82,14 +101,30 @@ install_starship() {
   fi
 }
 
+# Function to install tmux
+install_tmux_plugins() {
+  if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
+    echo "Installing tmux..."
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+  else
+    echo "tmux plugions already installed. Skipping..."
+  fi
+}
+
 # Determine OS and install dependencies accordingly
 OS="$(uname)"
 case $OS in
   "Darwin")
     install_macos
+    install_oh_my_zsh
+    install_starship
+    install_tmux_plugins
     ;;
   "Linux")
     install_linux
+    install_oh_my_zsh
+    install_starship
+    install_tmux_plugins
     ;;
   *)
     echo "Unsupported OS: $OS"
@@ -126,6 +161,7 @@ create_symlink "$REPO_ROOT/.zshrc" "$HOME/.zshrc"
 create_symlink "$REPO_ROOT/nvim" "$HOME/.config/nvim"
 create_symlink "$REPO_ROOT/starship.toml" "$HOME/.config/starship.toml"
 create_symlink "$REPO_ROOT/wezterm" "$HOME/.config/wezterm"
+rm -f "$REPO_ROOT/wezterm/wezterm"
 # Copy to clipboard functionality on Windows WSL2
 create_symlink "$REPO_ROOT/xsel" "$HOME/bin/xsel"
 rm -f "$HOME/.config/nvim/nvim"

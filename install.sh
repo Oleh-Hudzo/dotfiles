@@ -165,6 +165,9 @@ rm -f "$REPO_ROOT/wezterm/wezterm"
 # Copy to clipboard functionality on Windows WSL2
 create_symlink "$REPO_ROOT/xsel" "$HOME/bin/xsel"
 rm -f "$HOME/.config/nvim/nvim"
+create_symlink "$REPO_ROOT/tmux.conf" "$HOME/.tmux.conf"
+create_symlink "$REPO_ROOT/.tmux" "$HOME/.tmux"
+create_symlink "$REPO_ROOT/tmux-sesh-selector.sh" "$HOME/tmux-sesh-selector.sh"
 
 echo "Done!"
 echo "Please restart your shell to apply changes"
